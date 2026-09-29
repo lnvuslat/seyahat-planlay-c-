@@ -25,14 +25,18 @@ Proje, sürdürülebilirliği sağlamak ve kod karmaşasını önlemek adına **
 *   **Harita ve Konum Servisleri:** Google Maps Flutter API, Geolocator
 *   **Donanım İzinleri:** Image Picker (Kamera/Galeri), Permission Handler
 
-## 📂 Proje Klasör Yapısı
+## 📂 Proje Klasör Yapısı (Feature-First Architecture)
 
-```text
+Proje, sürdürülebilirliği sağlamak ve kod karmaşasını önlemek adına katmanlı (modüler) yapıda inşa edilmiştir. Her özellik (feature) kendi UI (Arayüz), Business Logic (İş Mantığı) ve Data (Veri) bileşenlerini izole bir şekilde barındırır.
+
 lib/
- ├── core/           # Tema, sabitler (constants), hata yönetimi ve utils
- ├── features/       # Uygulamanın ana modülleri (Feature-First Architecture)
- │    ├── map/       # Google Maps entegrasyonu, kamera takibi
- │    ├── ev_mode/   # Menzil hesaplama algoritmaları
- │    └── capsule/   # Rozet sistemi ve resim ekleme mantığı
- ├── shared/         # Ortak widget'lar (CustomBottomNavBar vb.)
- └── main.dart       # ProviderScope ve uygulama başlangıcı
+ ├── core/             # Tema ve uygulama sabitleri (constants, theme)
+ ├── features/         # Uygulamanın ana modülleri
+ │    ├── account/     # EV batarya profili ve genel ayarlar yönetimi
+ │    ├── badges/      # Geofencing rozetleri ve Zaman Kapsülü (Data/UI/Providers)
+ │    ├── home/        # Ana navigasyon iskeleti (Main Navigation)
+ │    ├── map/         # Google Maps entegrasyonu, kamera takibi ve rota planlayıcı
+ │    ├── planner/     # Rota kayıt servisleri, arama delege'leri ve rota detayları
+ │    └── todo/        # Seyahat görevleri (To-Do list) yönetimi
+ ├── shared/           # Ortak bileşenler (Örn: CustomBottomNavBar, BottomNavProvider)
+ └── main.dart         # ProviderScope sarmalayıcısı ve uygulama kök dizini
